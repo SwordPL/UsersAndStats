@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.15'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,12 +33,12 @@ gem 'sass', '3.2.19'
 gem 'bower-rails'
 
 group :development, :test do
-    gem 'rspec-rails'
-    gem 'factory_girl_rails'
-    gem 'capybara'
-    gem 'database_cleaner'
-    gem 'selenium-webdriver'
-    gem 'byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'byebug'
 end
 
 group :development do
@@ -50,4 +49,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'devise'
+gem 'angular_rails_csrf'
 gem 'angular-rails-templates'

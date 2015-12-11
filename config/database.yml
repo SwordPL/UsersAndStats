@@ -1,20 +1,16 @@
 
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  username: db_tester
   pool: 5
 
 development:
   <<: *default
-  username: developer
-  password: devonly
-  database: testing
+  database: UsersAndStatsDev
 
 test:
   <<: *default
-  username: testing
-  password: testing
-  database: testing
+  database: UsersAndStatsTest
 
 #production:
 #  <<: *default
