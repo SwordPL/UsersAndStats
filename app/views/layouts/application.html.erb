@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div ng-app="UsersAndStats">
+<div class="view-container">
+  <div ng-include="'nav/_nav.html'" class="view-frame animate-view"></div>
+</div>
 <%= yield %>
 
+</div>
 </body>
 </html>

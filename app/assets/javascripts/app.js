@@ -1,49 +1,23 @@
 
-usersAndStats = angular.module('UsersAndStats',[
+angular.module('UsersAndStats',[
     'templates',
     'ngRoute',
+    'Devise',
     'controllers'
 ]);
 
-usersAndStats.config(['$routeProvider',
+angular.module('UsersAndStats').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.when('/', {
-                templateUrl: "index.html",
+                templateUrl: "home/_index.html",
                 controller: 'MainController'
             }
         ).when('/groups/', {
-                templateUrl: "groups.html",
+                templateUrl: "groups/_groups.html",
                 controller: 'MainController'
             }
         )
     }
 ]);
 
-
-
 controllers = angular.module('controllers',[]);
-
-controllers.controller("MainController", [ '$scope', function($scope) {
-        $scope.yourSubjects = [
-            {   
-                id: 1,
-                name: "PSI"
-            },
-            {
-                id: 2,
-                name: "Sieci"
-            }
-        ]
-
-        $scope.otherSubjects = [
-            {   
-                id: 3,
-                name: "Toizo"
-            },
-            {
-                id: 4,
-                name: "Analiza"
-            }
-        ]
-    }
-]);
