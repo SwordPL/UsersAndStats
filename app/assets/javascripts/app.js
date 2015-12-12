@@ -16,6 +16,10 @@ angular.module('UsersAndStats').config(['$routeProvider',
                 templateUrl: "groups/_groups.html",
                 controller: 'MainController'
             }
+        ).when('/login', {
+                templateUrl: "auth/_login.html",
+                controller: 'AuthController'
+            }
         )
     }
 ]);
