@@ -21,3 +21,9 @@ controllers.controller("MainController", [ '$scope', function($scope) {
 
     }
 ]);
+
+controllers.controller("NavController", [ '$scope', 'Auth', function($scope, Auth) {
+
+    }
+]
+);
