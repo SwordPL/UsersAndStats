@@ -20,8 +20,12 @@ angular.module('UsersAndStats').config(['$routeProvider',
                 templateUrl: "subjects/_subject.html",
                 controller: 'SubjectController'
             }
+        ).when('/login', {
+                templateUrl: "auth/_login.html",
+                controller: 'AuthController'
+            }
         )
     }
 ]);
 
-controllers = angular.module('controllers',[]);
+controllers = angular.module('controllers', []);
