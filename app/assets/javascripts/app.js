@@ -1,18 +1,19 @@
 
-usersAndStats = angular.module('UsersAndStats',[
+angular.module('UsersAndStats',[
     'templates',
     'ngRoute',
+    'Devise',
     'controllers'
 ]);
 
-usersAndStats.config(['$routeProvider',
+angular.module('UsersAndStats').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.when('/', {
-                templateUrl: "index.html",
+                templateUrl: "home/_index.html",
                 controller: 'MainController'
             }
         ).when('/groups/', {
-                templateUrl: "groups.html",
+                templateUrl: "groups/_groups.html",
                 controller: 'MainController'
             }
         ).when('/subject/', {
@@ -22,7 +23,6 @@ usersAndStats.config(['$routeProvider',
         )
     }
 ]);
-
 
 
 controllers = angular.module('controllers',[]);
@@ -85,3 +85,4 @@ controllers.controller("SubjectController", [ '$scope', function($scope) {
         },
     ]
 }]);
+
