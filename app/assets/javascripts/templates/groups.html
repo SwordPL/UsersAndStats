@@ -1,0 +1,21 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">Your subjects</div>
+  <div class="panel-body">
+    <div class="list-group">
+      <a href="#" class="list-group-item" ng-repeat="subject in yourSubjects">{{subject.name}}</a>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Other subjects</div>
+  <div class="panel-body">
+    <div class="list-group">
+      <p href="#" class="list-group-item" ng-repeat="subject in otherSubjects">
+        {{subject.name}}
+        <a href="#" class="btn btn-xs btn-info pull-right">JOIN</a>
+      </p>
+    </div>
+  </div>
+</div>
