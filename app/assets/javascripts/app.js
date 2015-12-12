@@ -1,14 +1,15 @@
 
-usersAndStats = angular.module('UsersAndStats',[
+angular.module('UsersAndStats',[
     'templates',
     'ngRoute',
+    'Devise',
     'controllers'
 ]);
 
-usersAndStats.config(['$routeProvider',
+angular.module('UsersAndStats').config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.when('/', {
-                templateUrl: "home/index.html",
+                templateUrl: "home/_index.html",
                 controller: 'MainController'
             }
         )
@@ -17,13 +18,3 @@ usersAndStats.config(['$routeProvider',
 
 controllers = angular.module('controllers',[]);
 
-controllers.controller("MainController", [ '$scope', function($scope) {
-
-    }
-]);
-
-controllers.controller("NavController", [ '$scope', 'Auth', function($scope, Auth) {
-
-    }
-]
-);
