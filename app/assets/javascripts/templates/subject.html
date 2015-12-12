@@ -1,0 +1,13 @@
+<h1 align="center">{{subject.name}}</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Tasks</div>
+  <div class="panel-body">
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.name}}</a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-success" ng-repeat="task in newTasks">{{task.name}}</a>
+    </div>
+  </div>
+</div>
