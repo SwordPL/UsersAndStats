@@ -8,7 +8,7 @@ usersAndStats = angular.module('UsersAndStats',[
 usersAndStats.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.when('/', {
-                templateUrl: "index.html",
+                templateUrl: "home/index.html",
                 controller: 'MainController'
             }
         )
