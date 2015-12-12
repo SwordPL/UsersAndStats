@@ -20,4 +20,4 @@ angular.module('UsersAndStats').config(['$routeProvider',
     }
 ]);
 
-controllers = angular.module('controllers',[]);
+controllers = angular.module('controllers', []);
