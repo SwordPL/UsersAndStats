@@ -17,3 +17,4 @@
 //= require angular-route/angular-route
 //= require angular-devise
 //= require_tree .
+//= require dropzone

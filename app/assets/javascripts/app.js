@@ -20,6 +20,10 @@ angular.module('UsersAndStats').config(['$routeProvider',
                 templateUrl: "subjects/_subject.html",
                 controller: 'SubjectController'
             }
+        ).when('/task/', {
+                templateUrl: "tasks/_task.html",
+                controller: 'TaskController'
+            }
         ).when('/login', {
                 templateUrl: "auth/_login.html",
                 controller: 'AuthController'
