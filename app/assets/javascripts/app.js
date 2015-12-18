@@ -32,6 +32,10 @@ angular.module('UsersAndStats').config(['$routeProvider',
                 templateUrl: "profile/_profile.html",
                 controller: 'ProfileController'
             }
+        ).when('/users/', {
+                templateUrl: "users/_users.html",
+                controller: 'UsersController'
+            }
         )
     }
 ]);

@@ -5,8 +5,8 @@ controllers.controller("ProfileController", [ '$scope', 'Auth', function($scope,
         email: 'email@example.com',
         role: 'teacher'
     }
-        
-    $scope.edit = function() {
-        alert("EDIT");
+
+    $scope.showEditModal = function() {
+        // $('#editModal').modal('show');
     }
 }]);
