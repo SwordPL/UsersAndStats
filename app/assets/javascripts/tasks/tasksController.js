@@ -1,4 +1,4 @@
-controllers.controller("TaskController", [ '$scope', function($scope) {
+controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Auth) {
     $scope.subject = {
         id: 1,
         name: "PSI"
@@ -11,5 +11,11 @@ controllers.controller("TaskController", [ '$scope', function($scope) {
             subject: "PSI",
             path: 'xxx'
     };
+
+    $scope.signedIn = Auth.isAuthenticated;
+
+    Auth.currentUser().then(function (user){
+        $scope.user = user;
+    });
         
 }]);

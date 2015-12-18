@@ -28,6 +28,10 @@ angular.module('UsersAndStats').config(['$routeProvider',
                 templateUrl: "auth/_login.html",
                 controller: 'AuthController'
             }
+        ).when('/profile/', {
+                templateUrl: "profile/_profile.html",
+                controller: 'ProfileController'
+            }
         )
     }
 ]);
