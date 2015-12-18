@@ -1,4 +1,6 @@
-controllers.controller("ProfileController", [ '$scope', 'Auth', function($scope, Auth) {
+controllers.controller("ProfileController", [ '$scope', 'Auth', '$uibModal', 
+    function($scope, Auth, $uibModal) {
+
     $scope.user = {
         name: 'Name1',
         surname: 'Surname1',
@@ -6,7 +8,10 @@ controllers.controller("ProfileController", [ '$scope', 'Auth', function($scope,
         role: 'teacher'
     }
 
-    $scope.showEditModal = function() {
-        // $('#editModal').modal('show');
+
+    $scope.showEditModal = function () {
+    
     }
+      
 }]);
+

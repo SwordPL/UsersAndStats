@@ -3,7 +3,8 @@ angular.module('UsersAndStats',[
     'templates',
     'ngRoute',
     'Devise',
-    'controllers'
+    'controllers',
+    'ui.bootstrap'
 ]);
 
 angular.module('UsersAndStats').config(['$routeProvider',

@@ -1,7 +1,52 @@
 <h1>User manager</h1>
 
-<h3>Teachers</h3>
-<p ng-repeat="teacher in teachers">{{teacher}}</p>
 
-<h3>Students</h3>
-<p ng-repeat="student in students">{{student}}</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Teachers</h3>
+  </div>
+  <div class="panel-body">
+	<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Surname</th>
+	        <th>Email</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="teacher in teachers">
+	        <td>{{teacher.name}}</td>
+	        <td>{{teacher.surname}}</td>
+	        <td>{{teacher.email}}</td>
+	      </tr>
+	    </tbody>
+  	</table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Students</h3>
+  </div>
+  <div class="panel-body">
+	<table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Surname</th>
+	        <th>Email</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="student in students">
+	        <td>{{student.name}}</td>
+	        <td>{{student.surname}}</td>
+	        <td>{{student.email}}</td>
+	      </tr>
+	    </tbody>
+  	</table>
+  </div>
+</div>
+
+
