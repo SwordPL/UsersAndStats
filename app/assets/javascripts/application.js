@@ -11,9 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require jquery-ujs
 //= require angular/angular
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require angular-devise
+//= require angular-bootstrap
 //= require_tree .
+//= require dropzone
