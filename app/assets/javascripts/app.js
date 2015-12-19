@@ -1,30 +1,35 @@
 
 angular.module('UsersAndStats',[
     'templates',
-    'ngRoute',
+    'ui.router',
     'Devise',
     'controllers'
 ]);
 
-angular.module('UsersAndStats').config(['$routeProvider',
-    function($routeProvider) {
-        $routeProvider.when('/', {
+angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
+    function($stateProvider, $urlRouterProvider) {
+        $stateProvider.state('home', {
+                url: '/',
                 templateUrl: "home/_index.html",
                 controller: 'MainController'
             }
-        ).when('/groups/', {
+        ).state('groups', {
+                url: '/groups/',
                 templateUrl: "groups/_groups.html",
                 controller: 'MainController'
             }
-        ).when('/subject/', {
+        ).state('subject', {
+                url: '/subject/',
                 templateUrl: "subjects/_subject.html",
                 controller: 'SubjectController'
             }
-        ).when('/login', {
+        ).state('login', {
+                url: '/login',
                 templateUrl: "auth/_login.html",
                 controller: 'AuthController'
             }
         )
+        $urlRouterProvider.otherwise('home')
     }
 ]);
 
