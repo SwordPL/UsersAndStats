@@ -15,14 +15,14 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 controller: 'MainController'
             }
         ).state('groups', {
-                url: '/groups/',
+                url: '/groups',
                 templateUrl: "groups/_groups.html",
-                controller: 'MainController'
+                controller: 'GroupsController'
             }
-        ).state('subject', {
-                url: '/subject/',
-                templateUrl: "subjects/_subject.html",
-                controller: 'SubjectController'
+        ).state('posts', {
+                url: '/groups/{id}',
+                templateUrl: 'groups/_group.html',
+                controller: 'GroupController'
             }
         ).state('task', {
             url: '/task/',

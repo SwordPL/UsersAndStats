@@ -1,6 +1,9 @@
-controllers.controller("SubjectController", [ '$scope', function($scope) {
+controllers.controller("GroupController", [ '$scope', '$stateParams', function($scope, $stateParams) {
+    // when there will be a service
+    // $scope.subject = subjects.subjects[$stateParams.id];
+
     $scope.subject = {
-        id: 1,
+        id: $stateParams.id,
         name: "PSI"
     };
 
