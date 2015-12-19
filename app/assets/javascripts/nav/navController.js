@@ -1,6 +1,8 @@
-angular.module('UsersAndStats').controller("NavController", [ '$scope', 'Auth', function($scope, Auth) {
+angular.module('UsersAndStats').controller("NavController", [ '$scope', '$state', 'Auth',
+    function($scope, $state, Auth) {
         $scope.signedIn = Auth.isAuthenticated;
-        $scope.logout = Auth.logout;
+        $scope.logout = Auth.logout
+        
         Auth.currentUser().then(function (user){
             $scope.user = user;
         });
@@ -11,6 +13,7 @@ angular.module('UsersAndStats').controller("NavController", [ '$scope', 'Auth', 
 
         $scope.$on('devise:logout', function (e, user){
             $scope.user = {};
+            $state.go('home');
         });
     }
     ]
