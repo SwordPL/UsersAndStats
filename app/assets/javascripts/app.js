@@ -3,7 +3,8 @@ angular.module('UsersAndStats',[
     'templates',
     'ui.router',
     'Devise',
-    'controllers'
+    'controllers',
+    'ui.bootstrap'
 ]);
 
 angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
@@ -23,12 +24,28 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: "subjects/_subject.html",
                 controller: 'SubjectController'
             }
+        ).state('task', {
+            url: '/task/',
+            templateUrl: "tasks/_task.html",
+            controller: 'TaskController'
+            }
         ).state('login', {
                 url: '/login',
                 templateUrl: "auth/_login.html",
                 controller: 'AuthController'
             }
-        )
+        ).state('profile', {
+                url: '/profile',
+                templateUrl: "profile/_profile.html",
+                controller: 'ProfileController'
+            }
+        ).state('users', {
+                url: '/users/',
+                templateUrl: "users/_users.html",
+                controller: 'UsersController'
+            }
+        );
+
         $urlRouterProvider.otherwise('home')
     }
 ]);

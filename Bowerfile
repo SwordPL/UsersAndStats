@@ -2,4 +2,8 @@ asset 'angular'
 asset 'angular-ui-router'
 asset 'angular-devise'
 asset 'bootstrap-sass-official'
+asset 'dropzone'
+asset 'jquery'
+asset 'jquery-ujs'
+asset 'angular-bootstrap'
 # vim: ft=ruby
