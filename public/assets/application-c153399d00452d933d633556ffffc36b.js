@@ -55521,7 +55521,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/groups/_group.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("groups/_group.html", '<h1 align="center">{{subject.name}} - id: {{subject.id}}</h1>\n\n<div class="panel panel-default">\n  <div class="panel-heading">Tasks</div>\n  <div class="panel-body">\n    <div class="list-group">\n      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.name}}</a>\n    </div>\n    <div class="list-group">\n      <a href="#" class="list-group-item list-group-item-success" ng-repeat="task in newTasks">{{task.name}}</a>\n    </div>\n  </div>\n</div>')
+  $templateCache.put("groups/_group.html", '<h1 align="center">{{subject.name}} - id: {{subject.id}}</h1>\n\n<div class="panel panel-default">\n  <div class="panel-heading">Tasks</div>\n  <div class="panel-body">\n    <div class="list-group">\n      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.title}}</a>\n    </div>\n    <div class="list-group">\n      <a href="#" class="list-group-item list-group-item-success" ng-repeat="task in newTasks">{{task.title}}</a>\n    </div>\n  </div>\n</div>')
 }]);
 
 // Angular Rails Template
