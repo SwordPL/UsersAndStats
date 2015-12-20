@@ -22,7 +22,7 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', function($
             subject: "PSI",
             path: 'xxx'
         }
-    ]
+    ];
 
     $scope.newTasks = [
         {
