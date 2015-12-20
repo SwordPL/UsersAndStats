@@ -17,7 +17,13 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
         ).state('groups', {
                 url: '/groups',
                 templateUrl: "groups/_groups.html",
-                controller: 'GroupsController'
+                controller: 'GroupsController',
+                resolve: {
+                    groupPromise: ['groups', function(groups){
+                        console.log("test");
+                    return groups.getAll()
+                    }]
+                }
             }
         ).state('group', {
                 url: '/groups/{id}',

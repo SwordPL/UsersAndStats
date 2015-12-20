@@ -1,25 +1,13 @@
 angular.module('UsersAndStats').
-    factory('groups', [function() {
+    factory('groups', ['$http', function($http) {
         var o = {
-            yourSubjects: [
-                {
-                    id: 1,
-                    name: "PSI"
-                },
-                {
-                    id: 2,
-                    name: "Sieci"
-                }
-                ],
-            otherSubjects: [
-            {
-                id: 3,
-                name: "Toizo"
-            },
-            {
-                id: 4,
-                name: "Analiza"
-            }
-            ]};
-    return o;
+            yourSubjects: [],
+            otherSubjects: []
+        };
+        o.getAll = function() {
+            return $http.get('/subject.json').success(function(data){
+                angular.copy(data, o.yourSubjects);
+            });
+        };
+        return o;
 }]);

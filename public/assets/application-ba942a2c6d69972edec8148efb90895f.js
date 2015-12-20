@@ -55450,17 +55450,18 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
         ).state('groups', {
                 url: '/groups',
                 templateUrl: "groups/_groups.html",
-                controller: 'GroupsController'
+                controller: 'GroupsController',
+                resolve: {
+                    groupPromise: ['groups', function(groups){
+                        console.log("test");
+                    return groups.getAll()
+                    }]
+                }
             }
         ).state('group', {
                 url: '/groups/{id}',
                 templateUrl: 'groups/_group.html',
-                controller: 'GroupController',
-                resolve: {
-                    group: ['groups', function(groups) {
-                        return groups.getAll();
-                    }]
-                }
+                controller: 'GroupController'
             }
         ).state('task', {
             url: '/tasks/{id}',
@@ -55568,17 +55569,19 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', function($
 angular.module('UsersAndStats').
     factory('groups', ['$http', function($http) {
         var o = {
-            yourSubjects: []
+            yourSubjects: [],
+            otherSubjects: []
         };
-        o.getAll = function(){
-            return $http.get('/subject.json`', get).success(function(){
-                angular.copy(data, o.yourSubjects)
-            })
+        o.getAll = function() {
+            return $http.get('/subject.json').success(function(data){
+                angular.copy(data, o.yourSubjects);
+            });
         };
         return o;
 }]);
 controllers.controller("GroupsController", [ '$scope', 'groups', function($scope, groups) {
     $scope.yourSubjects = groups.yourSubjects;
+    $scope.otherSubjects = groups.otherSubjects;
 }]);
 // Angular Rails Template
 // source: app/assets/javascripts/home/_index.html
