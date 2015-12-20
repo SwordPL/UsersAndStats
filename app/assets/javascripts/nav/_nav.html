@@ -1,14 +1,16 @@
 <div class="collapse navbar-collapse pull-right" ng-controller="NavController">
     <ul class="nav navbar-nav">
-    <li><a href="#/">Home</a></li>
-    <li ng-hide="signedIn()"><a href="#/login">Log In</a></li>
-    <li ng-show="signedIn()"><a href="#/profile">{{ user.name +" "+user.surname }}</a></li>
-    <li ng-show="signedIn()"><a href="#/groups">Groups</a></li>
-    <li ng-show="signedIn()"><a href="#/groups">Groups</a></li>
-    <li ng-show="signedIn()"><a href="#/groups">Groups</a></li>
-    <li ng-show="signedIn()"><a href="#/groups">Groups</a></li>
-
-    <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
-
-</ul>
+	    <li><a href="#/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+	    
+	    <li ng-hide="signedIn()">
+	    	<a href="#/login">
+	    		<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+	    	</a>
+	    </li>
+	    
+	    <li ng-show="signedIn()"><a href="#/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{ user.name +" "+user.surname }}</a></li>
+	    <!-- <li ng-show="signedIn()"><a href="#/groups">Groups</a></li> -->
+	    <li ng-show="true"><a href="#/groups">Groups</a></li>
+	    <li ng-show="signedIn()"><a ng-click="logout()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a></li>
+	</ul>
 </div>

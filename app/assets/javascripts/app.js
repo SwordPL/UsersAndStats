@@ -19,13 +19,13 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: "groups/_groups.html",
                 controller: 'GroupsController'
             }
-        ).state('posts', {
+        ).state('group', {
                 url: '/groups/{id}',
                 templateUrl: 'groups/_group.html',
                 controller: 'GroupController'
             }
         ).state('task', {
-            url: '/task/',
+            url: '/tasks/{id}',
             templateUrl: "tasks/_task.html",
             controller: 'TaskController'
             }
