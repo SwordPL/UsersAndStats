@@ -1,6 +1,32 @@
 <h1>{{subject.name}}</h1>
 <h3>{{task.name}}</h3>
 
+<h3>Score:</h3>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+    9/10
+  </div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Submit time</th>
+			<th>Compilation success</th>
+			<th>Points</th>
+			<th>Execution time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="solution in userSolutions">
+			<td>{{solution.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+			<td>{{solution.compilationSuccess}}</td>
+			<td>{{solution.compilationSuccess ? solution.points : '-'}}</td>
+			<td>{{solution.compilationSuccess ? solution.executionTime : '-'}}</td>
+		</tr>
+	</tbody>
+</table>
+
 <form action="/file-upload"
       class="dropzone"
       id="solution-dropzone"></form>
