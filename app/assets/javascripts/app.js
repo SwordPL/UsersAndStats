@@ -20,7 +20,6 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 controller: 'GroupsController',
                 resolve: {
                     groupPromise: ['groups', function(groups){
-                        console.log("test");
                     return groups.getAll()
                     }]
                 }
@@ -28,7 +27,13 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
         ).state('group', {
                 url: '/groups/{id}',
                 templateUrl: 'groups/_group.html',
-                controller: 'GroupController'
+                controller: 'GroupController',
+                resolve: {
+                    tasksPromise: ['$stateParams', 'group', function($stateParams, group){
+                        console.log($stateParams.id);
+                        return group.getAll($stateParams.id)
+                    }]
+                }
             }
         ).state('task', {
             url: '/tasks/{id}',

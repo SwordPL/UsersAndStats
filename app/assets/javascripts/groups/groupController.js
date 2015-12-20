@@ -1,28 +1,8 @@
-controllers.controller("GroupController", [ '$scope', '$stateParams', function($scope, $stateParams) {
-    // when there will be a service
-    // $scope.subject = subjects.subjects[$stateParams.id];
+controllers.controller("GroupController", [ '$scope', '$stateParams', 'group', 'groups',
+    function($scope, $stateParams, group, groups) {
+    $scope.subject = groups.yourSubjects[$stateParams.id - 1];
 
-    $scope.subject = {
-        id: $stateParams.id,
-        name: "PSI"
-    };
-
-    $scope.tasks = [
-        {
-            id: 1,
-            name: "Diagramy 1.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-        },
-        {
-            id: 2,
-            name: "Diagramy 2.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-        }
-    ];
+    $scope.tasks = group.tasks;
 
     $scope.newTasks = [
         {

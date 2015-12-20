@@ -55453,7 +55453,6 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 controller: 'GroupsController',
                 resolve: {
                     groupPromise: ['groups', function(groups){
-                        console.log("test");
                     return groups.getAll()
                     }]
                 }
@@ -55461,7 +55460,13 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
         ).state('group', {
                 url: '/groups/{id}',
                 templateUrl: 'groups/_group.html',
-                controller: 'GroupController'
+                controller: 'GroupController',
+                resolve: {
+                    tasksPromise: ['$stateParams', 'group', function($stateParams, group){
+                        console.log($stateParams.id);
+                        return group.getAll($stateParams.id)
+                    }]
+                }
             }
         ).state('task', {
             url: '/tasks/{id}',
@@ -55527,34 +55532,22 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 }]);
 
 angular.module('UsersAndStats').
-factory('group', [function() {
-
-}]);
-controllers.controller("GroupController", [ '$scope', '$stateParams', function($scope, $stateParams) {
-    // when there will be a service
-    // $scope.subject = subjects.subjects[$stateParams.id];
-
-    $scope.subject = {
-        id: $stateParams.id,
-        name: "PSI"
+factory('group', ['$http', 'groups', function ($http) {
+    var o = {
+        tasks: []
     };
+    o.getAll = function(subject_id) {
+        return $http.get('/subject/'+subject_id+'/task.json').success(function(data){
+            angular.copy(data, o.tasks);
+        });
+    };
+    return o;
+}]);
+controllers.controller("GroupController", [ '$scope', '$stateParams', 'group', 'groups',
+    function($scope, $stateParams, group, groups) {
+    $scope.subject = groups.yourSubjects[$stateParams.id - 1];
 
-    $scope.tasks = [
-        {
-            id: 1,
-            name: "Diagramy 1.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-        },
-        {
-            id: 2,
-            name: "Diagramy 2.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-        }
-    ];
+    $scope.tasks = group.tasks;
 
     $scope.newTasks = [
         {
