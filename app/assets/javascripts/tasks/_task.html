@@ -36,6 +36,7 @@
 <table class="table">
 	<thead>
 		<tr>
+			<th></th>
 			<th>Author</th>
             <th>Compilation success</th>
             <th>Points</th>
@@ -44,7 +45,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="solution in bestSolutions | orderBy: ['-compilationSuccess', '-points', 'executionTime', 'createdAt']">
+		<tr ng-repeat="solution in bestSolutions | orderBy: ['-compilationSuccess', '-points', 'executionTime', 'createdAt']" ng-class="{'success': (solution.author == user.id)}">
+			<td>{{$index + 1}}</td>
 			<td>{{solution.author}}</td>
             <td>{{solution.compilationSuccess}}</td>
 			<td>{{solution.compilationSuccess ? solution.points : '-'}}</td>
