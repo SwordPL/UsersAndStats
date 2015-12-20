@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151219152700) do
+ActiveRecord::Schema.define(version: 20151220231708) do
 
   create_table "solutions", force: :cascade do |t|
     t.integer  "user_id",                limit: 4
@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20151219152700) do
   create_table "tasks", force: :cascade do |t|
     t.integer  "max_points", limit: 4
     t.integer  "subject_id", limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",      limit: 255
   end
 
   add_index "tasks", ["subject_id"], name: "index_tasks_on_subject_id", using: :btree
