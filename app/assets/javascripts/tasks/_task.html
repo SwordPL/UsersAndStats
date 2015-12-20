@@ -31,4 +31,25 @@
       class="dropzone"
       id="solution-dropzone"></form>
 
-<h1 ng-show>{{signedIn}}</h1>
+
+<h3>Ranking</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Author</th>
+            <th>Compilation success</th>
+            <th>Points</th>
+            <th>Execution time</th>
+            <th>Submit time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="solution in bestSolutions | orderBy: ['-compilationSuccess', '-points', 'executionTime', 'createdAt']">
+			<td>{{solution.author}}</td>
+            <td>{{solution.compilationSuccess}}</td>
+			<td>{{solution.compilationSuccess ? solution.points : '-'}}</td>
+			<td>{{solution.compilationSuccess ? solution.executionTime : '-'}}</td>
+			<td>{{solution.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+		</tr>
+	</tbody>
+</table>
