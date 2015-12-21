@@ -8,10 +8,13 @@ controllers.controller("GroupsController", [ '$scope', 'groups', function($scope
     	$scope.groupName = "";
     	$scope.newGroupPanel = true;
     	$('#group-added-info').hide();
-    }
+    };
 
     $scope.addNewGroup = function() {
     	$scope.newGroupPanel = false;
-    	$('#group-added-info').show();
+        groups.create({name: $scope.groupName}).success(function() {
+            $('#group-added-info').show();
+        });
+        $scope.groupName = "";
     }
 }]);
