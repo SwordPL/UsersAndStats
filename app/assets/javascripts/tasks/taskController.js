@@ -1,28 +1,17 @@
-controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Auth) {
-    // $scope.signedIn = Auth.isAuthenticated;
+controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'groups', 'tasks',
+    function($scope, $stateParams, Auth, groups, tasks) {
+    $scope.signedIn = Auth.isAuthenticated;
 
-    // Auth.currentUser().then(function (user){
-    //     $scope.user = user;
-    // });
+    Auth.currentUser().then(function (user){
+         $scope.user = user;
+    });
 
     $scope.fileAdded = false;
 
-    $scope.user = {
-        id: 1
-    }
-
-    $scope.subject = {
-        id: 1,
-        name: "PSI"
-    };
-
-    $scope.task = {
-            id: 1,
-            name: "Diagramy 1.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-    };
+    $scope.task = tasks.tasks;
+    groups.getOne($scope.task.subject_id).success(function(data){
+        $scope.subject = data
+    });
 
     $scope.userSolutions = [
         {

@@ -29,16 +29,20 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
                 templateUrl: 'groups/_group.html',
                 controller: 'GroupController',
                 resolve: {
-                    tasksPromise: ['$stateParams', 'group', function($stateParams, group){
-                        console.log($stateParams.id);
-                        return group.getAll($stateParams.id)
+                    tasksPromise: ['$stateParams', 'tasks', function($stateParams, tasks){
+                        return tasks.getAll($stateParams.id)
                     }]
                 }
             }
         ).state('task', {
             url: '/tasks/{id}',
             templateUrl: "tasks/_task.html",
-            controller: 'TaskController'
+            controller: 'TaskController',
+            resolve: {
+                taskPromise: ['$stateParams', 'tasks', function($stateParams, tasks){
+                    return tasks.getOne($stateParams.id)
+                }]
+            }
             }
         ).state('login', {
                 url: '/login',
