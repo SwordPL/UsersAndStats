@@ -55644,7 +55644,7 @@ controllers.controller("ProfileController", [ '$scope', 'Auth', '$uibModal',
 // source: app/assets/javascripts/tasks/_task.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("tasks/_task.html", '<h1>{{subject.name}}</h1>\n<h3>{{task.name}}</h3>\n\n<h3>Score:</h3>\n<div class="progress">\n  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">\n    9/10\n  </div>\n</div>\n\n<table class="table">\n	<thead>\n		<tr>\n			<th>Submit time</th>\n			<th>Compilation success</th>\n			<th>Points</th>\n			<th>Execution time</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr ng-repeat="solution in userSolutions">\n			<td>{{solution.createdAt | date:\'yyyy-MM-dd HH:mm:ss\'}}</td>\n			<td>{{solution.compilationSuccess}}</td>\n			<td>{{solution.compilationSuccess ? solution.points : \'-\'}}</td>\n			<td>{{solution.compilationSuccess ? solution.executionTime : \'-\'}}</td>\n		</tr>\n	</tbody>\n</table>\n\n<!-- <form action="/file-upload"\n      class="dropzone"\n      id="solution-dropzone"></form>\n -->\n<div class="container">     \n    <div class="span12 centered-text">  \n		<h3>Upload solution</h3>\n		<div class="dropzone-box" id=\'drop_zone\'>\n		    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class=\'dropzone\' id=\'file-dropzone\'></form>\n		</div>\n		<button ng-click="removeFile()">Remove</button>\n		<button ng-click="uploadFile()">Upload</button>\n	</div>\n</div>\n\n<h3>Ranking</h3>\n<table class="table">\n	<thead>\n		<tr>\n			<th></th>\n			<th>Author</th>\n            <th>Compilation success</th>\n            <th>Points</th>\n            <th>Execution time</th>\n            <th>Submit time</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr ng-repeat="solution in bestSolutions | orderBy: [\'-compilationSuccess\', \'-points\', \'executionTime\', \'createdAt\']" ng-class="{\'success\': (solution.author == user.id)}">\n			<td>{{$index + 1}}</td>\n			<td>{{solution.author}}</td>\n            <td>{{solution.compilationSuccess}}</td>\n			<td>{{solution.compilationSuccess ? solution.points : \'-\'}}</td>\n			<td>{{solution.compilationSuccess ? solution.executionTime : \'-\'}}</td>\n			<td>{{solution.createdAt | date:\'yyyy-MM-dd HH:mm:ss\'}}</td>\n		</tr>\n	</tbody>\n</table>')
+  $templateCache.put("tasks/_task.html", '<h1>{{subject.name}}</h1>\n<h3>{{task.name}}</h3>\n\n<h3>Score:</h3>\n<div class="progress">\n  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">\n    9/10\n  </div>\n</div>\n\n<table class="table">\n	<thead>\n		<tr>\n			<th>Submit time</th>\n			<th>Compilation success</th>\n			<th>Points</th>\n			<th>Execution time</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr ng-repeat="solution in userSolutions">\n			<td>{{solution.createdAt | date:\'yyyy-MM-dd HH:mm:ss\'}}</td>\n			<td>{{solution.compilationSuccess}}</td>\n			<td>{{solution.compilationSuccess ? solution.points : \'-\'}}</td>\n			<td>{{solution.compilationSuccess ? solution.executionTime : \'-\'}}</td>\n		</tr>\n	</tbody>\n</table>\n\n<!-- <form action="/file-upload"\n      class="dropzone"\n      id="solution-dropzone"></form>\n -->\n<div class="container">     \n    <div class="span12 centered-text">  \n		<h3>Upload solution</h3>\n		<div class="dropzone-box" id=\'drop_zone\'>\n		    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class=\'dropzone\' id=\'file-dropzone\'></form>\n		</div>\n		<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>\n	</div>\n</div>\n\n<h3>Ranking</h3>\n<table class="table">\n	<thead>\n		<tr>\n			<th></th>\n			<th>Author</th>\n            <th>Compilation success</th>\n            <th>Points</th>\n            <th>Execution time</th>\n            <th>Submit time</th>\n		</tr>\n	</thead>\n	<tbody>\n		<tr ng-repeat="solution in bestSolutions | orderBy: [\'-compilationSuccess\', \'-points\', \'executionTime\', \'createdAt\']" ng-class="{\'success\': (solution.author == user.id)}">\n			<td>{{$index + 1}}</td>\n			<td>{{solution.author}}</td>\n            <td>{{solution.compilationSuccess}}</td>\n			<td>{{solution.compilationSuccess ? solution.points : \'-\'}}</td>\n			<td>{{solution.compilationSuccess ? solution.executionTime : \'-\'}}</td>\n			<td>{{solution.createdAt | date:\'yyyy-MM-dd HH:mm:ss\'}}</td>\n		</tr>\n	</tbody>\n</table>')
 }]);
 
 controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Auth) {
@@ -55653,6 +55653,8 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     // Auth.currentUser().then(function (user){
     //     $scope.user = user;
     // });
+
+    $scope.fileAdded = true;
 
     $scope.user = {
         id: 1
@@ -55738,13 +55740,15 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     ]   
 
     var myDropzone = new Dropzone("#file-dropzone", {
+        url: "/file/post",
         init: function () {
             this.on('success', function(file, json) {
                 alert('success');
             });
 
             this.on('addedfile', function(file) {
-                alert('addedfile')
+                // alert('addedfile')
+                $scope.fileAdded = false;
             });
 
             this.on('drop', function(file) {
@@ -55758,17 +55762,13 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
         paramName: "file",
         maxFilesize: 1,
         maxFiles: 1,
-        autoProcessQueue: false,
         previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
     });
 
-    $scope.removeFile = function() {
+    $scope.addNewFile = function() {
         myDropzone.removeAllFiles();
     }
 
-    $scope.uploadFile = function() {
-        alert("Uploaded!");
-    }
 }]);
 controllers.controller("UsersController", [ '$scope', function($scope) {
 	$scope.students = [

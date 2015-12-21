@@ -5,6 +5,8 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     //     $scope.user = user;
     // });
 
+    $scope.fileAdded = true;
+
     $scope.user = {
         id: 1
     }
@@ -89,6 +91,7 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     ]   
 
     var myDropzone = new Dropzone("#file-dropzone", {
+        url: "/file/post",
         init: function () {
             this.on('success', function(file, json) {
                 alert('success');
@@ -96,6 +99,7 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
 
             this.on('addedfile', function(file) {
                 alert('addedfile')
+                $scope.fileAdded = false;
             });
 
             this.on('drop', function(file) {
@@ -109,15 +113,11 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
         paramName: "file",
         maxFilesize: 1,
         maxFiles: 1,
-        autoProcessQueue: false,
         previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
     });
 
-    $scope.removeFile = function() {
+    $scope.addNewFile = function() {
         myDropzone.removeAllFiles();
     }
 
-    $scope.uploadFile = function() {
-        alert("Uploaded!");
-    }
 }]);

@@ -37,8 +37,7 @@
 		<div class="dropzone-box" id='drop_zone'>
 		    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
 		</div>
-		<button ng-click="removeFile()">Remove</button>
-		<button ng-click="uploadFile()">Upload</button>
+		<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>
 	</div>
 </div>
 
