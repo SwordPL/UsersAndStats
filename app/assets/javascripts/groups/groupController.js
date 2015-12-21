@@ -1,6 +1,6 @@
 controllers.controller("GroupController", [ '$scope', '$stateParams', 'group', 'groups',
     function($scope, $stateParams, group, groups) {
-    $scope.subject = groups.yourSubjects[$stateParams.id - 1];
+    $scope.subject = groups.yourSubjects[$stateParams.id];
 
     $scope.tasks = group.tasks;
     $scope.fileAdded = false;
