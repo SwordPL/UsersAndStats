@@ -55654,7 +55654,7 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     //     $scope.user = user;
     // });
 
-    $scope.fileAdded = true;
+    $scope.fileAdded = false;
 
     $scope.user = {
         id: 1
@@ -55740,15 +55740,16 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
     ]   
 
     var myDropzone = new Dropzone("#file-dropzone", {
-        url: "/file/post",
         init: function () {
             this.on('success', function(file, json) {
                 alert('success');
             });
 
             this.on('addedfile', function(file) {
-                // alert('addedfile')
-                $scope.fileAdded = false;
+                alert('addedfile')
+                $scope.$apply(function(){
+                    $scope.fileAdded = true;
+                });
             });
 
             this.on('drop', function(file) {
@@ -55759,6 +55760,7 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
                 this.removeFile(file); 
             }); 
         },
+        url: "/file/post",
         paramName: "file",
         maxFilesize: 1,
         maxFiles: 1,
@@ -55767,6 +55769,9 @@ controllers.controller("TaskController", [ '$scope', 'Auth', function($scope, Au
 
     $scope.addNewFile = function() {
         myDropzone.removeAllFiles();
+        $scope.$apply(function(){
+            $scope.fileAdded = false;
+        });
     }
 
 }]);
