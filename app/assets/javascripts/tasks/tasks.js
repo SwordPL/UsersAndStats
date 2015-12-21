@@ -1,5 +1,5 @@
 angular.module('UsersAndStats').
-factory('group', ['$http', 'groups', function ($http) {
+factory('tasks', ['$http', 'groups', function ($http) {
     var o = {
         tasks: {}
     };
@@ -8,6 +8,11 @@ factory('group', ['$http', 'groups', function ($http) {
             for (var i = 0; i < data.length; i++) {
                 o.tasks[data[i].id] = data[i];
             }
+        });
+    };
+    o.getOne = function(task_id) {
+        return $http.get('/task/'+task_id+'.json').success(function(data){
+            angular.copy(data, o.tasks);
         });
     };
     return o;

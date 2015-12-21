@@ -1,8 +1,8 @@
-controllers.controller("GroupController", [ '$scope', '$stateParams', 'group', 'groups',
-    function($scope, $stateParams, group, groups) {
+controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', 'groups',
+    function($scope, $stateParams, tasks, groups) {
     $scope.subject = groups.yourSubjects[$stateParams.id];
 
-    $scope.tasks = group.tasks;
+    $scope.tasks = tasks.tasks;
     $scope.fileAdded = false;
     $scope.newTaskPanel = false;
     $scope.openNewTaskPanel = function() {

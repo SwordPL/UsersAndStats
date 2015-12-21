@@ -10,5 +10,10 @@ angular.module('UsersAndStats').
                 }
             });
         };
+        o.getOne = function(subject_id) {
+            return $http.get('/subject/'+subject_id+'.json').success(function(data){
+                angular.copy(data, o.yourSubjects);
+            });
+        };
         return o;
 }]);
