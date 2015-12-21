@@ -11,7 +11,13 @@
 
 <button ng-hide="newTaskPanel" class="btn btn-success" ng-click="openNewTaskPanel()">Add new task</button>
 <div ng-show="newTaskPanel" class="col-sm12 centered-text">
-	<h3>Input</h3>
+  <form>
+    <div class = "form-group">
+      <label>Task topic</label>
+      <input type = "text" class = "form-control" ng-model="taskTopic" placeholder = "Enter task topic">
+    </div>
+  	<textarea class = "form-control" rows = "3" ng-model="description"></textarea>
+  </form>
 	<div class="dropzone-box" id='drop_zone'>
 	    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
 	</div>

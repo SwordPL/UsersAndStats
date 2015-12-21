@@ -38,10 +38,12 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', '
     });
 
     $scope.addNewFile = function() {
+        console.log($scope.taskTopic);
+        console.log($scope.description);
         myDropzone.removeAllFiles();
-        $scope.$apply(function(){
-            $scope.fileAdded = false;
-        });
+        $scope.fileAdded = false;
+        $scope.taskTopic = "";
+        $scope.description = "";
     }
 
 }]);
