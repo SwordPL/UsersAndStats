@@ -1,0 +1,8 @@
+.dropzone-box {
+	width: 50%;
+    border: 2px dashed #BBB;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    color: #BBB;
+}

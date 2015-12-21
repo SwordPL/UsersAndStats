@@ -27,10 +27,19 @@
 	</tbody>
 </table>
 
-<form action="/file-upload"
+<!-- <form action="/file-upload"
       class="dropzone"
       id="solution-dropzone"></form>
-
+ -->
+<div class="container">     
+    <div class="span12 centered-text">  
+		<h3>Upload solution</h3>
+		<div class="dropzone-box" id='drop_zone'>
+		    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
+		</div>
+		<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>
+	</div>
+</div>
 
 <h3>Ranking</h3>
 <table class="table">

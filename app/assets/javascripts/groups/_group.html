@@ -6,8 +6,15 @@
     <div class="list-group">
       <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.title}}</a>
     </div>
-    <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-success" ng-repeat="task in newTasks">{{task.title}}</a>
-    </div>
+  </div>
+</div>
+
+<button ng-hide="newTaskPanel" class="btn btn-success" ng-click="openNewTaskPanel()">Add new task</button>
+<div ng-show="newTaskPanel" class="col-sm12 centered-text">
+	<h3>Input</h3>
+	<div class="dropzone-box" id='drop_zone'>
+	    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
+	</div>
+	<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>
   </div>
 </div>
