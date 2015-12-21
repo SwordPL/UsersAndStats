@@ -55516,7 +55516,7 @@ angular.module("templates").run(["$templateCache", function($templateCache) {
 // source: app/assets/javascripts/groups/_group.html
 
 angular.module("templates").run(["$templateCache", function($templateCache) {
-  $templateCache.put("groups/_group.html", '<h1 align="center">{{subject.name}} - id: {{subject.id}}</h1>\n\n<div class="panel panel-default">\n  <div class="panel-heading">Tasks</div>\n  <div class="panel-body">\n    <div class="list-group">\n      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.name}}</a>\n    </div>\n    <div class="list-group">\n      <a href="#" class="list-group-item list-group-item-success" ng-repeat="task in newTasks">{{task.name}}</a>\n    </div>\n  </div>\n</div>')
+  $templateCache.put("groups/_group.html", '<h1 align="center">{{subject.name}} - id: {{subject.id}}</h1>\n\n<div class="panel panel-default">\n  <div class="panel-heading">Tasks</div>\n  <div class="panel-body">\n    <div class="list-group">\n      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.name}}</a>\n    </div>\n  </div>\n</div>\n\n\n<button ng-hide="newTaskPanel" class="btn btn-success" ng-click="openNewTaskPanel()">Add new task</button>\n<div ng-show="newTaskPanel" class="col-sm12 centered-text">  \n	<h3>Input</h3>\n	<div class="dropzone-box" id=\'drop_zone\'>\n	    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class=\'dropzone\' id=\'file-dropzone\'></form>\n	</div>\n	<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>\n</div>')
 }]);
 
 // Angular Rails Template
@@ -55533,6 +55533,9 @@ factory('group', [function() {
 controllers.controller("GroupController", [ '$scope', '$stateParams', function($scope, $stateParams) {
     // when there will be a service
     // $scope.subject = subjects.subjects[$stateParams.id];
+
+    $scope.fileAdded = false;
+    $scope.newTaskPanel = false;
 
     $scope.subject = {
         id: $stateParams.id,
@@ -55556,15 +55559,45 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', function($
         }
     ];
 
-    $scope.newTasks = [
-        {
-            id: 3,
-            name: "Diagramy 3.",
-            maxPoints: 20,
-            subject: "PSI",
-            path: 'xxx'
-        }
-    ]
+    $scope.openNewTaskPanel = function() {
+        $scope.newTaskPanel = true;
+    }
+
+    var myDropzone = new Dropzone("#file-dropzone", {
+        init: function () {
+            this.on('success', function(file, json) {
+                alert('success');
+            });
+
+            this.on('addedfile', function(file) {
+                alert('addedfile')
+                $scope.$apply(function(){
+                    $scope.fileAdded = true;
+                });
+            });
+
+            this.on('drop', function(file) {
+                alert('drop');
+            });
+
+            this.on("maxfilesexceeded", function(file) { 
+                this.removeFile(file); 
+            }); 
+        },
+        url: "/task/post",
+        paramName: "file",
+        maxFilesize: 1,
+        maxFiles: 1,
+        previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
+    });
+
+    $scope.addNewFile = function() {
+        myDropzone.removeAllFiles();
+        $scope.$apply(function(){
+            $scope.fileAdded = false;
+        });
+    }
+
 }]);
 angular.module('UsersAndStats').
     factory('groups', ['$http', function($http) {
