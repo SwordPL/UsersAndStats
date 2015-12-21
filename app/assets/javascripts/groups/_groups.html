@@ -1,4 +1,3 @@
-
 <div class="panel panel-default">
   <div class="panel-heading">Your subjects</div>
   <div class="panel-body">
@@ -19,3 +18,13 @@
     </div>
   </div>
 </div>
+
+<button ng-hide="newGroupPanel" class="btn btn-info" ng-click="addNewGroupPanel()">Add new group</button>
+
+<form ng-show="newGroupPanel" role="form">
+  <div class="form-group">
+    <label for="email">Group name:</label>
+    <input type="email" class="form-control" id="groupName">
+  </div>
+</form>
+<button ng-show="newGroupPanel" class="btn btn-success" ng-click="addNewGroup()">Add</button>
