@@ -5,11 +5,13 @@ controllers.controller("GroupsController", [ '$scope', 'groups', function($scope
     $scope.newGroupPanel = false;
 
     $scope.addNewGroupPanel = function() {
+    	$scope.groupName = "";
     	$scope.newGroupPanel = true;
+    	$('#group-added-info').hide();
     }
 
     $scope.addNewGroup = function() {
     	$scope.newGroupPanel = false;
-    	alert("added");
+    	$('#group-added-info').show();
     }
 }]);
