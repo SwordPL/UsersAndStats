@@ -1,9 +1,8 @@
-
 <div class="panel panel-default">
   <div class="panel-heading">Your subjects</div>
   <div class="panel-body">
     <div class="list-group">
-      <a href="#/groups/{{subject.id}}" class="list-group-item" ng-repeat="(id, subject) in yourSubjects">{{subject.name}}</a>
+      <a href="#/groups/{{subject.id}}" class="list-group-item" ng-repeat="subject in yourSubjects">{{subject.name}}</a>
     </div>
   </div>
 </div>
@@ -19,3 +18,18 @@
     </div>
   </div>
 </div>
+
+<div class="alert alert-success collapse" id="group-added-info">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Group was added!</strong>
+</div>
+
+<button ng-hide="newGroupPanel" class="btn btn-info" ng-click="addNewGroupPanel()">Add new group</button>
+
+<form ng-show="newGroupPanel" role="form">
+  <div class="form-group">
+    <label for="email">Group name:</label>
+    <input type="text" class="form-control" ng-model="groupName">
+  </div>
+</form>
+<button ng-show="newGroupPanel" class="btn btn-success" ng-click="addNewGroup()">Add</button>
