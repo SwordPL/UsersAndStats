@@ -9,12 +9,41 @@
   </div>
 </div>
 
-<button ng-hide="newTaskPanel" class="btn btn-success" ng-click="openNewTaskPanel()">Add new task</button>
-<div ng-show="newTaskPanel" class="col-sm12 centered-text">
-	<h3>Input</h3>
-	<div class="dropzone-box" id='drop_zone'>
-	    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
-	</div>
-	<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>
+<button class="btn btn-success" ng-click="openNewTaskPanel()">Add new task</button>
+
+<!-- Modal -->
+<div id="newTaskModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-sm12 centered-text">
+          <form>
+            <div class = "form-group">
+              <label>Task topic</label>
+              <input type = "text" class = "form-control" ng-model="taskTopic" placeholder = "Enter task topic">
+            </div>
+            <textarea class = "form-control" rows = "3" ng-model="description"></textarea>
+          </form>
+          <div class="dropzone-box" id='drop_zone'>
+              <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
+          </div>
+          <button ng-show="fileAdded" class="btn btn-success" ng-click="removeFile()">Remove file</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-error" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">Add</button>
+      </div>
+    </div>
+
   </div>
 </div>
