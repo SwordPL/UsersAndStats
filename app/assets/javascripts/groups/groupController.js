@@ -4,9 +4,8 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', '
 
     $scope.tasks = tasks.tasks;
     $scope.fileAdded = false;
-    $scope.newTaskPanel = false;
     $scope.openNewTaskPanel = function() {
-        $scope.newTaskPanel = true;
+        $("#newTaskModal").modal('show');
     };
 
     var myDropzone = new Dropzone("#file-dropzone", {
@@ -37,13 +36,9 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', '
         previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
     });
 
-    $scope.addNewFile = function() {
-        console.log($scope.taskTopic);
-        console.log($scope.description);
+    $scope.removeFile = function() {
         myDropzone.removeAllFiles();
         $scope.fileAdded = false;
-        $scope.taskTopic = "";
-        $scope.description = "";
     }
 
 }]);
