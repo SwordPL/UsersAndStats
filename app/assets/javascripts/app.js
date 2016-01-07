@@ -42,7 +42,7 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
             controller: 'TaskController',
             resolve: {
                 taskPromise: ['$stateParams', 'tasks', function($stateParams, tasks){
-                    return tasks.getOne($stateParams.id)
+                    // return tasks.getOne($stateParams.id)
                 }]
             }
             }
@@ -63,7 +63,7 @@ angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
             }
         );
 
-        $urlRouterProvider.otherwise('home')
+        // $urlRouterProvider.otherwise('home')
     }
 ]);
 
