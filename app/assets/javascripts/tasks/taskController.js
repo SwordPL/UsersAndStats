@@ -1,5 +1,6 @@
-controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'groups', 'tasks',
-    function($scope, $stateParams, Auth, groups, tasks) {
+controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 
+    'groups', 'tasks', 'solutionUploader',
+    function($scope, $stateParams, Auth, groups, tasks, solutionUploader) {
     $scope.signedIn = Auth.isAuthenticated;
 
     Auth.currentUser().then(function (user){
@@ -18,28 +19,24 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
             id: 1,
             compilationSuccess: false,
             executionTime: 0,
-            points: 0,
             createdAt: new Date(2015, 12, 1, 14, 15, 0, 0)
         },
         {
             id: 2,
             compilationSuccess: true,
             executionTime: 100,
-            points: 10,
             createdAt: new Date(2015, 12, 4, 15, 15, 0, 0)
         },
         {
             id: 3,
             compilationSuccess: true,
             executionTime: 100,
-            points: 20,
             createdAt: new Date(2015, 12, 10, 9, 15, 0, 0)      
         },
         {
             id: 4,
             compilationSuccess: true,
             executionTime: 50,
-            points: 20,
             createdAt: new Date(2015, 12, 12, 23, 15, 0, 0)
         }
     ];
@@ -50,7 +47,6 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
             author: 3,
             compilationSuccess: true,
             executionTime: 50,
-            points: 18,
             createdAt: new Date(2015, 12, 10, 23, 15, 0, 0)
         },
         {
@@ -58,7 +54,6 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
             author: 4,
             compilationSuccess: false,
             executionTime: 0,
-            points: 0,
             createdAt: new Date(2015, 12, 15, 23, 15, 0, 0)
         },
         {
@@ -66,7 +61,6 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
             author: 1,
             compilationSuccess: true,
             executionTime: 50,
-            points: 20,
             createdAt: new Date(2015, 12, 16, 23, 15, 0, 0)
         },
         {
@@ -74,44 +68,28 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
             author: 2,
             compilationSuccess: true,
             executionTime: 20,
-            points: 20,
             createdAt: new Date(2015, 12, 12, 23, 15, 0, 0)
         }
     ]   
 
-    var myDropzone = new Dropzone("#file-dropzone", {
-        init: function () {
-            this.on('success', function(file, json) {
-                alert('success');
-            });
+    $scope.openNewSolutionPanel = function() {
+        $("#newSolutionModal").modal('show');
+    };
 
-            this.on('addedfile', function(file) {
-                alert('addedfile')
-                $scope.$apply(function(){
-                    $scope.fileAdded = true;
-                });
-            });
-
-            this.on('drop', function(file) {
-                alert('drop');
-            });
-
-            this.on("maxfilesexceeded", function(file) { 
-                this.removeFile(file); 
-            }); 
-        },
-        url: "/file/post",
-        paramName: "file",
-        maxFilesize: 1,
-        maxFiles: 1,
-        previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size" data-dz-size></div><img data-dz-thumbnail /></div><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div>',
-    });
-
-    $scope.addNewFile = function() {
-        myDropzone.removeAllFiles();
-        $scope.$apply(function(){
-            $scope.fileAdded = false;
-        });
-    }
+    $scope.uploadFile = function() {
+        var reader = new FileReader();
+        reader.readAsText($scope.file);
+        reader.onload = function(e) { 
+            var contents = e.target.result;
+            //below: tmp data
+            $scope.user = {
+                id: 1
+            };
+            $scope.task = {
+                id: 2
+            };
+            solutionUploader.sendSolution($scope.user.id, $scope.task.id, contents);
+        }
+    };
 
 }]);

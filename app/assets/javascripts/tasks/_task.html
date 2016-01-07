@@ -1,19 +1,11 @@
 <h1>{{subject.name}}</h1>
 <h3>{{task.title}}</h3>
 
-<h3>Score:</h3>
-<div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-    9/10
-  </div>
-</div>
-
 <table class="table">
 	<thead>
 		<tr>
 			<th>Submit time</th>
 			<th>Compilation success</th>
-			<th>Points</th>
 			<th>Execution time</th>
 		</tr>
 	</thead>
@@ -21,25 +13,45 @@
 		<tr ng-repeat="solution in userSolutions">
 			<td>{{solution.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 			<td>{{solution.compilationSuccess}}</td>
-			<td>{{solution.compilationSuccess ? solution.points : '-'}}</td>
 			<td>{{solution.compilationSuccess ? solution.executionTime : '-'}}</td>
 		</tr>
 	</tbody>
 </table>
 
-<!-- <form action="/file-upload"
-      class="dropzone"
-      id="solution-dropzone"></form>
- -->
-<div class="container">     
-    <div class="span12 centered-text">  
-		<h3>Upload solution</h3>
-		<div class="dropzone-box" id='drop_zone'>
-		    <form action="http://brightscreentv.net/WAYW/PHP/uploads.php" class='dropzone' id='file-dropzone'></form>
-		</div>
-		<button ng-show="fileAdded" class="btn btn-success" ng-click="addNewFile()">Add new file</button>
-	</div>
+
+<button class="btn btn-success" ng-click="openNewSolutionPanel()">Add new task</button>
+
+<!-- Modal -->
+<div id="newSolutionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New solution</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-sm12 centered-text">
+          <form name="solutionForm">
+            <div class = "form-group">
+	            <input type="file" file-model="file" required/>
+            </div>
+          </form>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-error" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal"
+        ng-click="uploadFile()" ng-disabled="solutionForm.$invalid">Add</button>
+      </div>
+    </div>
+
+  </div>
 </div>
+
 
 <h3>Ranking</h3>
 <table class="table">
@@ -48,17 +60,15 @@
 			<th></th>
 			<th>Author</th>
             <th>Compilation success</th>
-            <th>Points</th>
             <th>Execution time</th>
             <th>Submit time</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="solution in bestSolutions | orderBy: ['-compilationSuccess', '-points', 'executionTime', 'createdAt']" ng-class="{'success': (solution.author == user.id)}">
+		<tr ng-repeat="solution in bestSolutions | orderBy: ['-compilationSuccess', 'executionTime', 'createdAt']" ng-class="{'success': (solution.author == user.id)}">
 			<td>{{$index + 1}}</td>
 			<td>{{solution.author}}</td>
             <td>{{solution.compilationSuccess}}</td>
-			<td>{{solution.compilationSuccess ? solution.points : '-'}}</td>
 			<td>{{solution.compilationSuccess ? solution.executionTime : '-'}}</td>
 			<td>{{solution.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 		</tr>

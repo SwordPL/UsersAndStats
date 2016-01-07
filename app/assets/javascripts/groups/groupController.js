@@ -8,7 +8,7 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', '
         $("#newTaskModal").modal('show');
     };
 
-    $scope.uploadFiles = function() {
+    $scope.uploadTask = function() {
         taskUploader.sendTask($scope.subject, $scope.taskTopic,
         $scope.description, $scope.input, $scope.output); 
     }
