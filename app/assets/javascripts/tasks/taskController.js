@@ -1,5 +1,6 @@
-controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'groups', 'tasks',
-    function($scope, $stateParams, Auth, groups, tasks) {
+controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 
+    'groups', 'tasks', 'solutionUploader',
+    function($scope, $stateParams, Auth, groups, tasks, solutionUploader) {
     $scope.signedIn = Auth.isAuthenticated;
 
     Auth.currentUser().then(function (user){
@@ -73,6 +74,22 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 'gr
 
     $scope.openNewSolutionPanel = function() {
         $("#newSolutionModal").modal('show');
+    };
+
+    $scope.uploadFile = function() {
+        var reader = new FileReader();
+        reader.readAsText($scope.file);
+        reader.onload = function(e) { 
+            var contents = e.target.result;
+            //below: tmp data
+            $scope.user = {
+                id: 1
+            };
+            $scope.task = {
+                id: 2
+            };
+            solutionUploader.sendSolution($scope.user.id, $scope.task.id, contents);
+        }
     };
 
 }]);
