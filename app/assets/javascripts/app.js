@@ -4,7 +4,9 @@ angular.module('UsersAndStats',[
     'ui.router',
     'Devise',
     'controllers',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angular-websocket',
+    'file-model'
 ]);
 
 angular.module('UsersAndStats').config(['$stateProvider', '$urlRouterProvider',
