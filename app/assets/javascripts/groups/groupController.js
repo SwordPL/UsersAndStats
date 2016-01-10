@@ -7,14 +7,14 @@ controllers.controller("GroupController", [ '$scope', '$stateParams', 'tasks', '
         }
     }
 
-    $scope.tasks = tasks.tasks;
+    $scope.groupTasks = tasks.tasks;
     $scope.fileAdded = false;
 
     $scope.openNewTaskPanel = function() {
         $("#newTaskModal").modal('show');
     };
 
-    $scope.create = function() {
+    $scope.createTask = function() {
       tasks.create(
           { subject_id: $scope.subject.id,
             title: $scope.taskTopic,

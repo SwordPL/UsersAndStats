@@ -4,7 +4,7 @@
   <div class="panel-heading">Tasks</div>
   <div class="panel-body">
     <div class="list-group">
-      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in tasks">{{task.title}}</a>
+      <a href="#/tasks/{{task.id}}" class="list-group-item list-group-item-info" ng-repeat="task in groupTasks">{{task.title}}</a>
     </div>
   </div>
 </div>
@@ -44,7 +44,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-error" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-success" data-dismiss="modal"
-        ng-click="create()" ng-disabled="taskForm.$invalid">Add</button>
+        ng-click="createTask()" ng-disabled="taskForm.$invalid">Add</button>
       </div>
     </div>
 

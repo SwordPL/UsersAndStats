@@ -9,7 +9,13 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth',
 
     $scope.fileAdded = false;
 
-    $scope.task = tasks.tasks;
+    for(var i = 0; i < tasks.tasks.length; i++){
+        if(tasks.tasks[i].id == $stateParams.id) {
+            $scope.task = tasks.tasks[i];
+            break;
+        }
+    }
+
     groups.getOne($scope.task.subject_id).success(function(data){
         $scope.subject = data
     });
