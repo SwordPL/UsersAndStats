@@ -31,6 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sass'
 
 gem 'bower-rails'
+gem 'thin'
 
 group :development, :test do
   gem 'rspec-rails'

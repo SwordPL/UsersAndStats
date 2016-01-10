@@ -6,8 +6,6 @@ factory('taskUploader', ['$websocket', function ($websocket) {
             dataStream.send(JSON.stringify(
                 { 
                     groupID: group,
-                    topic: topic,
-                    description: description,
                     input: input,
                     output: output
                 }));
