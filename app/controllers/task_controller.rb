@@ -8,14 +8,14 @@ class TaskController < ApplicationController
   end
 
   def create
-    task = Task.create(params)
+    task = Task.create(post_params)
     send_through_websocket(task)
     respond_with task
   end
 
 private
   def post_params
-    params.require(:task).permit(:title, :description)
+    params.require(:task).permit(:title, :description, :input, :output, :subject_id)
   end
 
   def send_through_websocket(task)
