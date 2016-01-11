@@ -53,3 +53,6 @@ end
 gem 'devise'
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
+
+gem 'websocket-eventmachine-server'
+gem 'websocket-eventmachine-client'
