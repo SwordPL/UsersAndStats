@@ -5,7 +5,6 @@ angular.module('UsersAndStats',[
     'Devise',
     'controllers',
     'ui.bootstrap',
-    'angular-websocket',
     'file-model'
 ]);
 
