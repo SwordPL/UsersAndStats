@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :task, only: [:index]
   end
 
-  resources :task, only: [:show, :create]
+  resources :task, only: [:show, :create] do
+    resources :solution, only: [:index]
+  end
 
 end

@@ -1,5 +1,5 @@
 angular.module('UsersAndStats').
-factory('tasks', ['$http', 'groups', function ($http) {
+factory('tasks', ['$http', function ($http) {
     var o = {
         tasks: []
     };
