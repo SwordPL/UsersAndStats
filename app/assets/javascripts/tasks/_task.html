@@ -11,15 +11,15 @@
 	</thead>
 	<tbody>
 		<tr ng-repeat="solution in userSolutions">
-			<td>{{solution.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-			<td>{{solution.compilationSuccess}}</td>
-			<td>{{solution.compilationSuccess ? solution.executionTime : '-'}}</td>
+			<td>{{solution.created_at | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+			<td>{{solution.compilation_successful}}</td>
+			<td>{{solution.compilation_successful ? solution.execution_time : '-'}}</td>
 		</tr>
 	</tbody>
 </table>
 
 
-<button class="btn btn-success" ng-click="openNewSolutionPanel()">Add new task</button>
+<button class="btn btn-success" ng-click="openNewSolutionPanel()">Add new solution</button>
 
 <!-- Modal -->
 <div id="newSolutionModal" class="modal fade" role="dialog">

@@ -1,6 +1,6 @@
 controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 
-    'groups', 'tasks', 'solutionUploader',
-    function($scope, $stateParams, Auth, groups, tasks, solutionUploader) {
+    'groups', 'tasks', 'solutions', 'solutionUploader',
+    function($scope, $stateParams, Auth, groups, tasks, solutions, solutionUploader) {
     $scope.signedIn = Auth.isAuthenticated;
 
     Auth.currentUser().then(function (user){
@@ -9,68 +9,22 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth',
 
     $scope.fileAdded = false;
 
-    $scope.task = tasks.tasks;
+    for(var i = 0; i < tasks.tasks.length; i++){
+        if(tasks.tasks[i].id == $stateParams.id) {
+            $scope.task = tasks.tasks[i];
+            break;
+        }
+    }
+
     groups.getOne($scope.task.subject_id).success(function(data){
         $scope.subject = data
     });
 
-    $scope.userSolutions = [
-        {
-            id: 1,
-            compilationSuccess: false,
-            executionTime: 0,
-            createdAt: new Date(2015, 12, 1, 14, 15, 0, 0)
-        },
-        {
-            id: 2,
-            compilationSuccess: true,
-            executionTime: 100,
-            createdAt: new Date(2015, 12, 4, 15, 15, 0, 0)
-        },
-        {
-            id: 3,
-            compilationSuccess: true,
-            executionTime: 100,
-            createdAt: new Date(2015, 12, 10, 9, 15, 0, 0)      
-        },
-        {
-            id: 4,
-            compilationSuccess: true,
-            executionTime: 50,
-            createdAt: new Date(2015, 12, 12, 23, 15, 0, 0)
-        }
-    ];
-     
-    $scope.bestSolutions = [
-        {
-            id: 6,
-            author: 3,
-            compilationSuccess: true,
-            executionTime: 50,
-            createdAt: new Date(2015, 12, 10, 23, 15, 0, 0)
-        },
-        {
-            id: 7,
-            author: 4,
-            compilationSuccess: false,
-            executionTime: 0,
-            createdAt: new Date(2015, 12, 15, 23, 15, 0, 0)
-        },
-        {
-            id: 4,
-            author: 1,
-            compilationSuccess: true,
-            executionTime: 50,
-            createdAt: new Date(2015, 12, 16, 23, 15, 0, 0)
-        },
-        {
-            id: 5,
-            author: 2,
-            compilationSuccess: true,
-            executionTime: 20,
-            createdAt: new Date(2015, 12, 12, 23, 15, 0, 0)
-        }
-    ]   
+    solutions.getAll($stateParams.id).success(function(data) {
+        $scope.userSolutions = data;
+    });
+
+    $scope.bestSolutions = [ ];
 
     $scope.openNewSolutionPanel = function() {
         $("#newSolutionModal").modal('show');

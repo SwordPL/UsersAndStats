@@ -31,6 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'sass'
 
 gem 'bower-rails'
+gem 'thin'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -52,3 +53,6 @@ end
 gem 'devise'
 gem 'angular_rails_csrf'
 gem 'angular-rails-templates'
+
+gem 'websocket-eventmachine-server'
+gem 'websocket-eventmachine-client'
