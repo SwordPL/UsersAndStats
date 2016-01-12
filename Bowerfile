@@ -6,5 +6,6 @@ asset 'dropzone'
 asset 'jquery'
 asset 'jquery-ujs'
 asset 'angular-bootstrap'
+asset 'angular-websocket'
 asset 'angular-file-model'
 # vim: ft=ruby

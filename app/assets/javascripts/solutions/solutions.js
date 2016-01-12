@@ -5,10 +5,9 @@ factory('solutions', ['$http', function ($http) {
     };
 
     o.getAll = function(task_id) {
-        return $http.get('/task/'+task_id+'/solutions').success(function(data){
+        return $http.get('/task/'+task_id+'/solution.json').success(function(data){
             angular.copy(data, o.solutions);
         })};
-
 
     return o;
 }]);

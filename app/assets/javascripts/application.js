@@ -19,5 +19,6 @@
 //= require angular-devise
 //= require angular-bootstrap
 //= require angular-file-model
+//= require angular-websocket
 //= require dropzone
 //= require_tree .

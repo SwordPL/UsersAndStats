@@ -1,6 +1,6 @@
 controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth', 
-    'groups', 'tasks', 'solutionUploader',
-    function($scope, $stateParams, Auth, groups, tasks, solutionUploader) {
+    'groups', 'tasks', 'solutions', 'solutionUploader',
+    function($scope, $stateParams, Auth, groups, tasks, solutions, solutionUploader) {
     $scope.signedIn = Auth.isAuthenticated;
 
     Auth.currentUser().then(function (user){

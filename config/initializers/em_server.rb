@@ -14,12 +14,16 @@ def start_server
     end
 
     ws.onmessage do |msg, _|
+      begin
       msg = JSON.parse(msg)
       if %w(user_id task_id compilation_successful execution_time).all? { |x| msg.has_key? x }
         Solution.create(user_id: msg['user_id'],
                         task_id: msg['task_id'],
                         compilation_successful: msg['compilation_successful'],
                         execution_time: msg['execution_time'])
+        end
+      rescue StandardError
+        # ignored
       end
     end
 

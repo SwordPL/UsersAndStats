@@ -11,13 +11,14 @@ class TaskController < ApplicationController
 
   def create
     task = Task.create(post_params)
-    send_through_websocket(task)
+    params['user_id'] = 1
+    send_through_websocket(params.to_json)
     respond_with task
   end
 
 private
   def post_params
-    params.require(:task).permit(:title, :description, :input, :output, :subject_id)
+    params.require(:task).permit(:title, :description, :subject_id)
   end
 
   def send_through_websocket(task)
@@ -25,7 +26,7 @@ private
       ws = WebSocket::EventMachine::Client.connect(:uri => 'ws://localhost:8080')
 
       EventMachine.next_tick do
-        ws.send JSON.generate(task)
+        ws.send task
         ws.close
       end
 
