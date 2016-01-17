@@ -16,11 +16,11 @@ def start_server
     ws.onmessage do |msg, _|
       begin
       msg = JSON.parse(msg)
-      if %w(user_id task_id compilation_successful execution_time).all? { |x| msg.has_key? x }
+      if %w(user_id task_id result_type).all? { |x| msg.has_key? x }
         Solution.create(user_id: msg['user_id'],
-                        task_id: msg['task_id'],
-                        compilation_successful: msg['compilation_successful'],
-                        execution_time: msg['execution_time'])
+                        task_id: msg['task_number'],
+                        compilation_successful: msg['result_type'],
+                        execution_time: (msg['result_value'] if msg.has_key? 'result_value'))
         end
       rescue StandardError
         # ignored
