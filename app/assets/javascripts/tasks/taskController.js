@@ -3,9 +3,11 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth',
     function($scope, $stateParams, Auth, groups, tasks, solutions, solutionUploader) {
     $scope.signedIn = Auth.isAuthenticated;
 
+/*
     Auth.currentUser().then(function (user){
          $scope.user = user;
     });
+*/
 
     $scope.fileAdded = false;
 
@@ -33,16 +35,10 @@ controllers.controller("TaskController", [ '$scope', '$stateParams', 'Auth',
     $scope.uploadFile = function() {
         var reader = new FileReader();
         reader.readAsText($scope.file);
-        reader.onload = function(e) { 
+        reader.onload = function(e) {
             var contents = e.target.result;
-            //below: tmp data
-            $scope.user = {
-                id: 1
-            };
-            $scope.task = {
-                id: 2
-            };
-            solutionUploader.sendSolution($scope.user.id, $scope.task.id, contents);
+            console.log(contents);
+            solutionUploader.sendSolution(1, $scope.task.id, contents, $scope.task.input, $scope.task.output);
         }
     };
 

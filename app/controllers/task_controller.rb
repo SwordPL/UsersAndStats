@@ -18,7 +18,7 @@ class TaskController < ApplicationController
 
 private
   def post_params
-    params.require(:task).permit(:title, :description, :subject_id)
+    params.require(:task).permit(:title, :description, :subject_id, :input, :output)
   end
 
   def send_through_websocket(task)
