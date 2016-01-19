@@ -56,3 +56,5 @@ gem 'angular-rails-templates'
 
 gem 'websocket-eventmachine-server'
 gem 'websocket-eventmachine-client'
+
+gem 'rails_12factor'
